@@ -7,23 +7,8 @@
 # rssato
 # 1517254
 # 1/22/2021
-# %% [markdown]
-# To Do:
-# - tokenize the input
-# - convert arith code to take list of tokens as input
-# - implement boolean expressions
-# - read "straight line code"
-#     - variables and assignment
-# - implement if
-# - implement while
-# 
-# Completed:
-# - tokenize the input
-# - convert arith code to take list of tokens as input
-# - implement boolean expressions
 import collections
 
-# %%
 INTEGER, PLUS, MINUS, MUL, LPAREN, RPAREN, LBRACE, RBRACE, ASSIGNMENT, VAR, TRUE, FALSE, SEMI_COLON, EOF= (
     'INTEGER', 'PLUS', 'MINUS', 'MUL', '(', ')', '{', '}', 'ASSIGNMENT', 'VAR', 'TRUE', 'FALSE', ';', 'EOF'
 )
