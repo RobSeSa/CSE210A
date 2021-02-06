@@ -1,24 +1,9 @@
+#!/usr/bin/env python3
 # # WHILE-SS - Assig
 # Robert Sato
 # rssato
 # 1517254
 # 2/1/2021
-# %% [markdown]
-# ### Syntactic changes:
-# - aexp = ... | ( aexp )
-# - bexp = ... | ( bexp )
-# - comm = ... | { comm }
-# 
-# ### To Do:
-# - plan syntactic changes
-# - plan representation of stores
-# - test existing
-# - make changes for parens
-# - test new tokens
-# - change output format
-# 
-# ### Completed:
-# - 
 
 # %%
 INTEGER, PLUS, MINUS, MUL, LPAREN, RPAREN, LBRACE, RBRACE, ASSIGNMENT, VAR, TRUE, FALSE, SEMI_COLON, EOF= (
@@ -55,7 +40,6 @@ class Lexer(object):
     # return a list of tokens
     def tokenize(self):
         textAsTokens = []
-        print("tokenize()\nEquation: ", self.text)
         #print("Text has len: ", len(self.text))
         while self.pos < len(self.text):
             curr = self.text[self.pos]
@@ -86,7 +70,6 @@ class Lexer(object):
                 # if next char is a digit, do digit stuff and add as INTEGER
                 next = self.text[self.pos+1]
                 if next.isdigit():
-                    print('found next is digit:', next)
                     # do digit stuff
                     self.pos += 1
                     curr = self.text[self.pos]
@@ -205,7 +188,6 @@ class Lexer(object):
         if self.token_pos < len(self.tokenList):
             temp = self.tokenList[self.token_pos]
             self.token_pos += 1
-            print("get_next_token() =", temp)
             return temp
         else:
             #print("No more tokens")
@@ -215,7 +197,6 @@ class Lexer(object):
         # this function will be called when current token is LPAREN
         # in if/while, when we are trying to determine if this paren is a bexpr or aexpr
         curr_pos = self.token_pos
-        print("Checking what type of paren expr this is...")
         # scan over the tokens
         # skip tokens when more LPARENS are seen. stop skipping when that many RPARENS are seen
         skipping = 0
@@ -236,7 +217,6 @@ class Lexer(object):
                         print("Error: is_bool never set. No operations seen")
                     return is_bool
             elif skipping == 0:
-                print("checking token:", curr_token.type)
                 # actually record if is_bool
                 if curr_token.type in (TRUE, FALSE, NOT,LESS_THAN, EQUALS, OR, AND):
                     #print("is_bool set to True")
@@ -355,12 +335,12 @@ class If(AST):
 
 class While(AST):
     def __init__(self, cond, true_branch):
-        self.cond = cond,
+        self.cond = cond
         self.true_branch = true_branch
     def __repr__(self):
         return 'while {cond} do {{ {t} }}'.format(
-            cond=self.cond,
-            t=self.true_branch
+            cond=repr(self.cond),
+            t = repr(self.true_branch)
         )
 
 class Skip(AST):
@@ -394,7 +374,6 @@ class Parser(object):
         # type and if they match then "eat" the current token
         # and assign the next token to the self.current_token,
         # otherwise raise an exception.
-        print("Eating: type: {}, value: {}".format(self.current_token.type, self.current_token.value))
         if self.current_token.type == token_type:
             self.current_token = self.lexer.get_next_token()
         else:
@@ -454,8 +433,6 @@ class Parser(object):
         """
         <expression>::=<term>{<or><term>}
         """
-        print('in b_expr()')
-        print('current_token:', self.current_token)
         # first token in set (true, false, expr, not, b_expr)
         node = self.b_term()
         #print('self.current_token after b_expr call to b_term():', self.current_token)
@@ -469,8 +446,6 @@ class Parser(object):
         """
         <term>::=<factor>{<and><factor>}
         """
-        print('in b_term()')
-        print('current_token:', self.current_token)
         node = self.b_factor()
         while self.current_token.type == AND:
             token = self.current_token
@@ -483,8 +458,6 @@ class Parser(object):
         <factor>::=<constant>|<not><factor>|(<expression>)
         <constant>::= false|true
         """
-        print('in b_factor()')
-        print('current_token:', self.current_token)
         token = self.current_token
         if token.type == TRUE:
             self.eat(TRUE)
@@ -499,15 +472,12 @@ class Parser(object):
             node = Not(child=node)
             return node
         elif token.type == LPAREN:
-            print("Looking at LPAREN\nNeed to check aexp/bexp")
             if self.lexer.expr_is_bool(): # eating parens is not handled in self.b_expr() call
-                print("paren found to be BOOLEAN EXPR")
                 self.eat(LPAREN)
                 node = self.b_expr()
                 self.eat(RPAREN)
             else: # eating parens handled with self.expr() call
                 # should create a node and compare to the next aexpr
-                print("paren NOT a BOOLEAN EXPR: should be aexpr")
                 node = self.expr()
                 token = self.current_token
                 self.eat(token.type)
@@ -526,20 +496,17 @@ class Parser(object):
     # tree implementation
     # returns 1 command as its given object types
     def get_command(self):
-        print("\nget_command()")
         if self.current_token.type != EOF:
             token = self.current_token
             type = token.type
             self.eat(type)
             if type == SKIP:
-                print("adding skip command")
                 return Skip(token)
             elif type == VAR:
                 # syntax: VAR ASSIGNMENT EXPR
                 name = token.value
                 self.eat(ASSIGNMENT)
                 expr = self.expr()
-                print("Adding {} = expr() command".format(name))
                 # don't need to eat bc self.expr() eats
                 return VarAssign(name, expr)
             elif type == SEMI_COLON:
@@ -547,36 +514,22 @@ class Parser(object):
                 print("Error semicolon token given to get_command")
             elif type == IF:
                 # syntax: IF b_expr THEN c_expr ELSE c_expr
-                print("\nFinding condition for if()")
                 cond = self.b_expr()
                 # check if there is more to the bexpr (check if reached then)
-                '''while self.current_token != THEN:
-                    print("Not done with bexpr for if; finding another bexpr")
-                    temp = self.current_token
-                    self.eat(self.current_token.type)
-                    cond = BoolOp(left=cond, op=temp, right=self.b_expr())'''
                 self.eat(THEN)
-                print("\nFinding true_branch for if()")
                 true_branch = self.c_expr()
                 self.eat(ELSE)
-                print("\nFinding false_branch for if()")
                 false_branch = self.c_expr()
-                print("\nBack from IF false branch")
-                print("Adding If node after calling b_expr and c_expr twice")
                 return If(cond=cond, true_branch=true_branch, false_branch=false_branch)
             elif type == WHILE:
                 # syntax: WHILE b_expr DO c_expr
-                print("Finding condition for while()")
                 cond = self.b_expr()
                 self.eat(DO)
-                print("Finding true_branch for while()")
                 true_branch = self.c_expr()
-                print("Adding While node after calling b_expr and c_expr")
                 return While(cond=cond, true_branch=true_branch)
             # add condition for {}
             elif type == LBRACE:
                 # syntax: { c_expr }
-                print("Finding c_expr() inside { <-> } ")
                 node = self.c_expr()
                 self.eat(RBRACE)
                 return node
@@ -605,7 +558,6 @@ class Interpretor(object):
         self.variables = {}
 
     def interpret(self):
-        print("\ninterpreting 10,000 steps or until skip...")
         #self.visit(self.rootAST) # change this to visit 1000 or until skip command
         node = self.rootAST
         node_type = type(node).__name__
@@ -613,7 +565,7 @@ class Interpretor(object):
         while steps < 10000 and node_type != 'Skip':
             node = self.visit(node)
             #print("Step:", steps, "Current node:", node)
-            print('Formatted: Step {}; {}'.format(steps, node), end = ', ')
+            print('⇒ {}'.format(node), end = ', ')
             self.printStore()
             steps += 1
             node_type = type(node).__name__
@@ -696,7 +648,7 @@ class Interpretor(object):
                 #self.visit(node.false_branch)
                 return node.false_branch
         elif node_type == 'While':
-            print(node)
+            #print(node)
             #while self.visit(node.cond):
             #    self.visit(node.true_branch)
             if self.visit(node.cond):
@@ -716,7 +668,7 @@ class Interpretor(object):
             else:
                 return SEMI_COL(SEMI_COLON, left=self.visit(node.left), right=node.right)
         elif node_type == 'tuple':
-            print('Trying to unwrap bc tuple')
+            #print('Trying to unwrap bc tuple')
             return self.visit(node[0])
         else:
             print('{} node type not found in interpreter!!!'.format(node_type))
