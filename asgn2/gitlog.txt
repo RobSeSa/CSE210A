@@ -1,0 +1,89 @@
+commit 633fe9ed377a487697223cdd58e180f0f5f8a2f2 (HEAD -> main, origin/main)
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 22 20:55:23 2021 -0800
+
+    completed assignment 2
+
+commit 8a114dea42853b2531e8ce21cd2ba347dc039a11
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 22 20:48:08 2021 -0800
+
+    working asgn2.py and Makefile. 6 failures
+
+commit 65b2fdf525e601f0d793898437f8c1240cd57524
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 22 19:05:33 2021 -0800
+
+    passing much harder cases. no real testing on test.sh yet. converting to .py and testing now
+
+commit 21a29237998be110f402cdd38d24f647d8aad282
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 22 18:39:53 2021 -0800
+
+    passes some test cases. only tested variable assignment and conditions
+
+commit aa72d6176ed28b338350c3c0aef572906d235504
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 22 17:59:12 2021 -0800
+
+    parser looks good. Starting interpreter
+
+commit 7d44a2894c0e5c96271dc54b83a18bc1897520c5
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 22 17:04:46 2021 -0800
+
+    commented out list implementation of commands. node implementation looks to work. starting more testing
+
+commit 391945cebe14581104ba40096bc71d0d7a97e43b
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 22 04:57:36 2021 -0800
+
+    somewhat working list implementation of commands. Not terminating c_expr properly
+
+commit 612ad69dd1a07266492f5a82f1c45211c2989aa2
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Thu Jan 21 20:53:59 2021 -0800
+
+    v1 implementation of c_expr with lists
+
+commit d826bff26bcd97b73d6b19ac7423e04a1f572890
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Thu Jan 21 18:42:22 2021 -0800
+
+    working boolean exressions
+
+commit c8646c46c5900e38800ca91b05963846afd87d9c
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Thu Jan 21 17:17:50 2021 -0800
+
+    working or in boolean expressions. not is not working and variable comparison seems to be working. more testing needed
+
+commit e5bc7bfbf0c2ca0179d5913a18c3e8eefe7eca9b
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Thu Jan 21 15:14:36 2021 -0800
+
+    some progress on boolean expressions. not correctly building tree. needs more testing. messy printing rn
+
+commit 9540912a54e5bbe42b1b59c15baced0cff48f2d2
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Thu Jan 21 00:16:15 2021 -0800
+
+    added EBNF for boolean expressions. Template for command expressions
+
+commit 7e2d6d8fd090c895eaf3c78a0ed0409df940e398
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Wed Jan 20 22:22:40 2021 -0800
+
+    added c_expr that matches the different types of commands. no handling of commands yet
+
+commit 78321a2321dbe46041a5385428347e66759651ef
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Wed Jan 20 21:31:45 2021 -0800
+
+    parsing all new keywords v1
+
+commit 15eac5e7a589dfd4175cfbb80fb862a04f94b8f8
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Wed Jan 20 15:50:47 2021 -0800
+
+    setup asgn2 and init with arith file

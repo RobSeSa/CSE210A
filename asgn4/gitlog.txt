@@ -1,0 +1,65 @@
+commit 2c28dcd7d6f4a9dd282262bb35ba10125989b983 (HEAD -> main, origin/main)
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Feb 5 20:05:24 2021 -0800
+
+    working asgn4.py - passes 42 test cases
+
+commit 7934a14c54732419e5f74a89c764b905a02143fa
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Feb 5 19:09:48 2021 -0800
+
+    working v1 formatted printing of ss commands. about to test asgn4.py. updated Makefile for correct file names
+
+commit 0b075c354d437c5bec33abee03f2e7ee004d8989
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Feb 5 18:30:20 2021 -0800
+
+    starting major changes to interpretor. visit method will now only return the next command for command nodes. aexp/bexp nodes staay the same (big step)
+
+commit ae02aa2f5b32eee59fb31d7871631648ce22c03a
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Feb 5 18:04:45 2021 -0800
+
+    printing tree works. removed old tree printing methods
+
+commit e74b8e508e9891b968e6d2dd77a3bb927cf89f91
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Feb 5 18:02:31 2021 -0800
+
+    finished command pretty printing. not tested
+
+commit 25e0011b0e6a04b9b1bd00111a7fc17a0419a9ca
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Feb 5 17:48:08 2021 -0800
+
+    finished pretty printing for boolean expressions
+
+commit 5a52ce2f431f3b8a8761ef25e452d5aebaa01f4e
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Feb 5 17:40:32 2021 -0800
+
+    completed pretty printing for AExp
+
+commit bb4db8141b45b0587ae42353e79bcd677552ccf0
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Feb 5 17:33:54 2021 -0800
+
+    starting to make changes for pretty printing. no small step yet. paren for aexp and bexp fails on some cases
+
+commit e957418133d40f2d1213e50966b24f4760744281
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Wed Feb 3 17:56:40 2021 -0800
+
+    completed function for checking if LPAREN is aexp or bexp
+
+commit 0bbcf14e6dfbb57414a3844eda0e996d067c4e9f
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Tue Feb 2 21:55:49 2021 -0800
+
+    base ipynb for while-ss. planning - no appreciable changes
+
+commit 2f29ed5f804dc1745bf5382cce82c53094b74de3
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Tue Feb 2 15:02:55 2021 -0800
+
+    init directory and base files copied from asgn2

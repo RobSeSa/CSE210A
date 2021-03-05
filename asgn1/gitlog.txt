@@ -1,0 +1,42 @@
+commit 96099f1c5fcb8740b68bc4ba0ad4740aa6c2ef9d (HEAD -> main, origin/main)
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 15 17:03:48 2021 -0800
+
+    updated report to have all 5 test cases
+
+commit 38a64bffd411a40f14063ae0ddbe861cfb486675
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 15 16:54:27 2021 -0800
+
+    added report
+
+commit e6d58400e78e7435658e3a629ddcba2da83d4061
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 15 16:53:07 2021 -0800
+
+    finalized code
+
+commit acd01740b75825737c240156dd8e191de8433228
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 15 15:25:54 2021 -0800
+
+    added negative numbers token
+
+commit 540895341e7bb32a2cf3af8d7c2fa319bd553919
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Fri Jan 15 14:59:00 2021 -0800
+
+    added Makefile for converting python script to executable. No negative numbers or testing on test script
+
+commit 14fa33c10e2c381921330971577a8178bda5a8bb
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Wed Jan 13 21:44:56 2021 -0800
+
+    computes the formulas properly. needs lots of cleanup and testing
+
+commit 75c2348db91352381a0bad37c8ee69edc9cc0cc7
+Author: Robert Sato <robertssato@gmail.com>
+Date:   Wed Jan 13 16:30:20 2021 -0800
+
+    init repo
+
